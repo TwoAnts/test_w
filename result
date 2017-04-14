@@ -1,0 +1,33 @@
+filesize:104857600 req_count:10000
+req_size_range:(100, 102400)
+recalcu
+Sum:    514375122 Bytes Time: 32.6043 seconds Bandwidth: 15.05M Bps
+normal
+Sum:    514375122 Bytes Time: 31.0162 seconds Bandwidth: 15.82M Bps 
+
+filesize:524288000 req_count:500
+req_size_range:(1024, 10485760)
+recalcu
+[random] Sum:   2563397013 Bytes Time: 122.4681 seconds Bandwidth: 19.96M Bps
+[seq]    Sum:   2563397013 Bytes Time: 122.4864 seconds Bandwidth: 19.96M Bps
+normal
+Sum:   2563397013 Bytes Time: 122.4502 seconds Bandwidth: 19.96M Bps
+
+
+filesize:104857600 req_count:500
+req_size_range:(1024, 10485760)
+recalcu
+[random] Sum:   2511498155 Bytes Time: 119.9192 seconds Bandwidth: 19.97M Bps
+[seq]    Sum:   2511498155 Bytes Time: 119.8731 seconds Bandwidth: 19.98M Bps
+normal
+Sum:   2511498155 Bytes Time: 119.8642 seconds Bandwidth: 19.98M Bps
+
+
+filesize:104857600 req_count:10000
+req_size_range:(100, 102400)
+recalcu
+Sum:    514175134 Bytes Time: 31.5067 seconds Bandwidth: 15.56M Bps
+Sum:    514175134 Bytes Time: 31.7188 seconds Bandwidth: 15.46M Bps
+normal
+Sum:    514175134 Bytes Time: 38.7543 seconds Bandwidth: 12.65M Bps
+Sum:    514175134 Bytes Time: 31.1493 seconds Bandwidth: 15.74M Bps

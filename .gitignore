@@ -1,0 +1,6 @@
+*.pyc
+*sum
+result*
+!result
+*.dat
+
