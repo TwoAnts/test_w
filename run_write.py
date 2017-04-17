@@ -53,11 +53,12 @@ if __name__ == '__main__':
         bytes_sum = 0
         time_sum = 0
         history = []
-        l10_bs = 0
-        l10_time = 0
+        last_bs = 0
+        last_time = 0
         avg_rate = 0
         rates = []
         times = []
+        avg_flag = False
         with open(sys.argv[2], 'wb') as target:
             target.truncate(filesize)
             for line in f:
@@ -72,15 +73,17 @@ if __name__ == '__main__':
                            number=1)                
                 times.append(t)
 
-                if len(history) >= 10: 
+                while last_time >= 1: 
                     bs, time = history.pop(0)
-                    l10_bs -= bs
-                    l10_time -= time
+                    last_bs -= bs
+                    last_time -= time
                     
                 history.append((size, t))
-                l10_bs += size
-                l10_time += t
-                avg_rate = l10_bs/l10_time
+                last_bs += size
+                last_time += t
+                if not avg_flag and last_time >= 1: avg_flag = True
+                if last_time >= 1 or not avg_flag:
+                    avg_rate = last_bs/last_time
                 rates.append(avg_rate)
                 
                 
@@ -94,9 +97,9 @@ if __name__ == '__main__':
         print '\nDone. Sum: %12s Bytes Time: %.4f seconds Bandwidth: %s Bps' %(
                     bytes_sum, time_sum, human_bytes(bytes_sum/time_sum))
 
-        fname = plot_req_time(times, title='req_times', ymax=time_sum/req_count*2.5,
-                                                                         draw_avg=True)
-        print 'Save req_times pictrue to %s.' %fname 
+        #fname = plot_req_time(times, title='req_times', ymax=time_sum/req_count*2.5,
+        #                                                                 draw_avg=True)
+        #print 'Save req_times pictrue to %s.' %fname 
 
         fname = plot_line_chart(rates, 'Bps', 'Count', 'rates', ymax=bytes_sum/time_sum*2.5,
                                                                          draw_avg=True)

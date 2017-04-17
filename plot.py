@@ -27,7 +27,9 @@ def plot_line_chart(ydata, ylabel, xlabel, title, draw_avg=False,
     if ymax: plt.gca().set_ylim(top=ymax)
 
     avg = sum(ydata)/len(ydata)
-    if draw_avg: plt.axhline(avg, ls='--', color='red')
+    if draw_avg: 
+        plt.axhline(avg, ls='--', color='red')
+        plt.text(0, avg, '%.2f' %avg, alpha=0.6)
 
     filename = re.sub(r'[\\/]+', '_', title)
     plt.savefig('%s.png' %filename)
