@@ -5,6 +5,7 @@ import sys, re, os
 from timeit import timeit
 
 from write import human_bytes
+from plot import plot_req_time, plot_line_chart
 
 STAT_PATTERN = re.compile(
             '\s*filesize:\s*(?P<filesize>\d+)\s*req_count:\s*(?P<req_count>\d+).*')
@@ -51,7 +52,12 @@ if __name__ == '__main__':
 
         bytes_sum = 0
         time_sum = 0
-
+        history = []
+        l10_bs = 0
+        l10_time = 0
+        avg_rate = 0
+        rates = []
+        times = []
         with open(sys.argv[2], 'wb') as target:
             target.truncate(filesize)
             for line in f:
@@ -64,8 +70,21 @@ if __name__ == '__main__':
                 t = timeit('exec_req(target, offset, size)',
                            'from __main__ import target, offset, size, exec_req, os',
                            number=1)                
+                times.append(t)
+
+                if len(history) >= 10: 
+                    bs, time = history.pop(0)
+                    l10_bs -= bs
+                    l10_time -= time
+                    
+                history.append((size, t))
+                l10_bs += size
+                l10_time += t
+                avg_rate = l10_bs/l10_time
+                rates.append(avg_rate)
                 
-                sys.stdout.write('\r%s/%s' %(cnt, req_count))
+                
+                sys.stdout.write('\r%s/%s, %sBps' %(cnt, req_count, human_bytes(avg_rate)))
                 sys.stdout.flush()
 
                 #print '%-6s offset:%-12s bytes:%-12s time: %s seconds' %(cnt, offset, size, t)
@@ -74,6 +93,16 @@ if __name__ == '__main__':
         
         print '\nDone. Sum: %12s Bytes Time: %.4f seconds Bandwidth: %s Bps' %(
                     bytes_sum, time_sum, human_bytes(bytes_sum/time_sum))
+
+        fname = plot_req_time(times, title='req_times', ymax=time_sum/req_count*2.5,
+                                                                         draw_avg=True)
+        print 'Save req_times pictrue to %s.' %fname 
+
+        fname = plot_line_chart(rates, 'Bps', 'Count', 'rates', ymax=bytes_sum/time_sum*2.5,
+                                                                         draw_avg=True)
+        print 'Save rates picture to %s.' %fname
+        
+
 
         with open('sum', 'w') as out:
             out.write('Sum: %12s Bytes Time: %.4f seconds Bandwidth: %s Bps' %(
