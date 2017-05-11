@@ -31,3 +31,31 @@ Sum:    514175134 Bytes Time: 31.7188 seconds Bandwidth: 15.46M Bps
 normal
 Sum:    514175134 Bytes Time: 38.7543 seconds Bandwidth: 12.65M Bps
 Sum:    514175134 Bytes Time: 31.1493 seconds Bandwidth: 15.74M Bps
+
+filesize:1G req_count:10000
+req_size:16K
+recalcu
+Sum:    163840000 Bytes Time: 31.9367 seconds Bandwidth: 4.89M Bps
+Sum:    163840000 Bytes Time: 31.1522 seconds Bandwidth: 5.02M Bps
+Sum:    163840000 Bytes Time: 30.3867 seconds Bandwidth: 5.14M Bps
+>>seq  Sum:    163840000 Bytes Time: 28.5423 seconds Bandwidth: 5.47M Bps
+>>seq  Sum:    163840000 Bytes Time: 29.2457 seconds Bandwidth: 5.34M Bps
+
+normal
+Sum:    163840000 Bytes Time: 31.0539 seconds Bandwidth: 5.03M Bps
+Sum:    163840000 Bytes Time: 30.4431 seconds Bandwidth: 5.13M Bps
+>>seq  Sum:    163840000 Bytes Time: 30.2481 seconds Bandwidth: 5.17M Bps
+>>seq  Sum:    163840000 Bytes Time: 29.5939 seconds Bandwidth: 5.28M Bps
+
+filesize:1G req_count:10000
+req_size:64K
+recalcu
+Sum:    655360000 Bytes Time: 41.8532 seconds Bandwidth: 14.93M Bps
+Sum:    655360000 Bytes Time: 41.1674 seconds Bandwidth: 15.18M Bps
+>>seq  Sum:    655360000 Bytes Time: 40.4913 seconds Bandwidth: 15.44M Bps
+>>seq  Sum:    655360000 Bytes Time: 38.8830 seconds Bandwidth: 16.07M Bps
+normal
+Sum:    655360000 Bytes Time: 40.8830 seconds Bandwidth: 15.29M Bps
+Sum:    655360000 Bytes Time: 41.8415 seconds Bandwidth: 14.94M Bps
+>>seq  Sum:    655360000 Bytes Time: 39.5653 seconds Bandwidth: 15.80M Bps
+>>seq  Sum:    655360000 Bytes Time: 39.7680 seconds Bandwidth: 15.72M Bps
