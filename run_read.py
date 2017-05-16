@@ -48,9 +48,9 @@ if __name__ == '__main__':
         msg = raw_input('Continue?(Y/n) ')
         if msg not in ('Y', 'y'): exit()
 
-	print 'drop cache ...' 
-	drop_cache = 'echo 3 > /proc/sys/vm/drop_caches'
-	os.system(drop_cache)
+        print 'drop cache ...' 
+        drop_cache = 'echo 3 > /proc/sys/vm/drop_caches'
+        os.system(drop_cache)
 
         bytes_sum = 0
         time_sum = 0
@@ -61,8 +61,8 @@ if __name__ == '__main__':
         rates = []
         times = []
         avg_flag = False
-        with open(sys.argv[2], 'wb+') as target:
-            target.truncate(filesize)
+        with open(sys.argv[2], 'rb') as target:
+            #target.truncate(filesize)
             for line in f:
                 m = REQ_PATTERN.match(line)
                 if not m: continue

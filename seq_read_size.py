@@ -31,8 +31,8 @@ if __name__ == '__main__':
 
     time_cnt = 0
     bytes_cnt = 0
-    with open(sys.argv[1], 'wb+') as f:
-        f.truncate(filesize)
+    with open(sys.argv[1], 'rb') as f:
+        #f.truncate(filesize)
         cnt = 0
         while cnt < req_count:
             cnt += 1
