@@ -15,11 +15,8 @@ REQ_PATTERN = re.compile(
 
 
 def exec_req(f, offset, size):
-    per_len = 100
     f.seek(offset, 0)
-    for _ in xrange(size/per_len):
-        f.read(per_len)
-    f.read(size%per_len)
+    f.read(size)
 
 if __name__ == '__main__':
     usage = 'run_read.py <seq_file> <test_file>'
